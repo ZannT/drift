@@ -1,0 +1,45 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace = 'app.drift.sleep'
+    compileSdk = 37
+
+    defaultConfig {
+        applicationId = 'app.drift.sleep'
+        minSdk = 37          // Android 17 and newer
+        targetSdk = 37
+        versionCode = 1
+        versionName = '1.0'
+    }
+
+    // A fixed signing key kept in this private repo, so each new build installs over the last one.
+    signingConfigs {
+        drift {
+            storeFile = file('drift.keystore')
+            storePassword = 'driftsleep'
+            keyAlias = 'drift'
+            keyPassword = 'driftsleep'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled = true
+            shrinkResources = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig = signingConfigs.drift
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+    }
+}

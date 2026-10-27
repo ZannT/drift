@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Every color has a 00 blue channel: no blue light anywhere in the app. -->
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="red">#FFA01800</color>
+    <color name="red_dim">#FF4A0C00</color>
+    <color name="amber">#FFD27800</color>
+    <color name="highlight">#40A01800</color>
+</resources>
