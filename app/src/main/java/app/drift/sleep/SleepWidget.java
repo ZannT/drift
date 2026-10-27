@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-/** Home-screen widget: one tap plays (using the most recent settings) or stops. */
+/** Home-screen widget: one tap plays (most recent settings) or stops; a double tap opens the app. */
 public class SleepWidget extends AppWidgetProvider {
 
     @Override
@@ -29,8 +29,9 @@ public class SleepWidget extends AppWidgetProvider {
         v.setTextViewText(R.id.widget_sub, Sounds.NAMES[s.sound]
                 + (s.timer == 0 ? "" : " · " + Sounds.fmtTimer(s.timer)));
 
-        PendingIntent pi = PendingIntent.getForegroundService(c, 1,
-                new Intent(c, SleepService.class).setAction(SleepService.ACTION_TOGGLE),
+        // Taps go to an invisible activity that tells a single tap (play/stop) from a double tap (open app).
+        PendingIntent pi = PendingIntent.getActivity(c, 1,
+                new Intent(c, WidgetTap.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
                 PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         v.setOnClickPendingIntent(R.id.widget_root, pi);
         mgr.updateAppWidget(me, v);

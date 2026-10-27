@@ -21,8 +21,8 @@ A private Android sleep-sound app (Android 17+). Every sound is generated live b
 
 - Timer up to 10 hours, optional fade-out of 1, 5, 15 or 30 minutes; 8-second fade-in at start.
 - Stops if earbuds disconnect (never falls back to the phone speaker). Pauses for calls.
-- Widget: one tap plays the most recent settings or stops.
-- Red on black, amber highlights, no blue in any color. Optional screen dimming while the app is open.
+- Widget: one tap plays the most recent settings or stops; double-tap opens the app.
+- Red on black, amber highlights, no blue in any color. Optional brightness lock (off by default) while the app is open.
 - No libraries. Block-based synthesis into a large power-saving audio buffer (under 1% of one CPU core).
 
 ## Building

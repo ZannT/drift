@@ -13,7 +13,7 @@ final class Settings {
     int timer = 32;     // x 15 min = 8 hours; 0 = no timer
     int fade = 3;       // index into Sounds.FADES (15 min)
     int volume = 45;    // 0..100
-    boolean dim = true;
+    boolean dim = false; // off by default so the phone's own brightness control works
 
     static Settings load(Context c) {
         SharedPreferences p = prefs(c);
@@ -28,7 +28,7 @@ final class Settings {
         s.timer = clamp(p.getInt("timer", s.timer), 0, Sounds.TIMER_STEPS);
         s.fade = clamp(p.getInt("fade", s.fade), 0, Sounds.FADES.length - 1);
         s.volume = clamp(p.getInt("volume", s.volume), 0, 100);
-        s.dim = p.getBoolean("dim", s.dim);
+        s.dim = p.getBoolean("dim_lock", s.dim);
         return s;
     }
 
@@ -40,7 +40,7 @@ final class Settings {
             e.putFloat("hi" + i, hi[i]);
         }
         e.putInt("interval", interval).putInt("mode", mode).putInt("timer", timer)
-                .putInt("fade", fade).putInt("volume", volume).putBoolean("dim", dim).apply();
+                .putInt("fade", fade).putInt("volume", volume).putBoolean("dim_lock", dim).apply();
     }
 
     float intervalSec() { return Sounds.INTERVALS[interval]; }

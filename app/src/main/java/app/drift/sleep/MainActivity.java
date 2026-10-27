@@ -217,6 +217,8 @@ public class MainActivity extends Activity {
             refreshAll();
         });
         col.addView(dimCell);
+        col.addView(text("When on, the screen stays at its lowest brightness while Drift is open "
+                + "and the phone's brightness slider is ignored.", 12, RED_DIM));
 
         TextView note = text("Pink and brown noise have the most research support for falling asleep. "
                 + "Binaural beats and rhythmic sounds have mixed, early evidence. Use what feels calming.", 12, RED_DIM);
@@ -283,7 +285,7 @@ public class MainActivity extends Activity {
         intervalLabel.setText(Sounds.fmtInterval(Sounds.INTERVALS[s.interval]));
         timerLabel.setText(Sounds.fmtTimer(s.timer));
         volLabel.setText(s.volume + "%");
-        dimCell.setText(s.dim ? "Dim screen: ON" : "Dim screen: OFF");
+        dimCell.setText(s.dim ? "Lock to lowest brightness: ON" : "Lock to lowest brightness: OFF");
         style(dimCell, s.dim);
         refreshStatus();
     }
